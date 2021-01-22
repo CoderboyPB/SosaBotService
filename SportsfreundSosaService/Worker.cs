@@ -23,14 +23,14 @@ namespace SportsfreundSosaService
 
         public override async Task StartAsync(CancellationToken cancellationToken)
         {
-            await Bot.Say($"Es ist {DateTime.Now:HH:mm:ss}, und ich bin habe ausgeschlafen und bin wieder zurück.");
+            // await Bot.Say($"Es ist {DateTime.Now:HH:mm:ss}, und ich bin habe ausgeschlafen und bin wieder zurück.");
             Log.Information("Return from Sleep");
             await base.StartAsync(cancellationToken);
         }
 
         public override async Task StopAsync(CancellationToken cancellationToken)
         {
-            await Bot.Say($"Es ist {DateTime.Now:now:HH:mm:ss}, und ich lege mich jetzt hin für ein Schläfchen.");
+            // await Bot.Say($"Es ist {DateTime.Now:now:HH:mm:ss}, und ich lege mich jetzt hin für ein Schläfchen.");
             Log.Information("Going to Sleep");
             await base.StartAsync(cancellationToken);
         }

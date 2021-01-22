@@ -33,22 +33,23 @@ namespace SportsfreundSosaService
 
         public static async Task Retweet()
         {
-            var tweets = (await userClient.Search.SearchTweetsAsync("Sportsfreund Sosa"))
-                 .OrderByDescending(tweet => tweet.CreatedAt)
-                 .ToList();
-
-            foreach (var tweet in tweets)
+            try
             {
-                try
+                var tweets = (await userClient.Search.SearchTweetsAsync("Sportsfreund Sosa"))
+                    .OrderByDescending(tweet => tweet.CreatedAt)
+                    .ToList();
+
+                foreach (var tweet in tweets)
                 {
                     await userClient.Tweets.PublishRetweetAsync(tweet.Id);
                     Log.Information($"Retweeted: {{ {tweet.FullText} }}");
                 }
-                catch (TwitterException)
-                {
-                    return;
-                }
             }
-        }
+            catch (TwitterException ex)
+            {
+                Log.Error(ex.Message);
+                return;
+            }
+        }          
     }
 }
